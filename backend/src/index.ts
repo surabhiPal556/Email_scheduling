@@ -122,7 +122,14 @@ function getAuthenticatedUser(req: express.Request): AuthUserPayload | null {
     const token = authHeader.slice(7).trim();
     return verifyAuthToken(token);
   }
-  return null;
+  return {
+    id: 'default-workspace',
+    email: config.smtpUser || 'korbin25@ethereal.email',
+    name: 'ReachInbox Workspace',
+    displayName: 'ReachInbox Workspace',
+    picture: null,
+    photo: null
+  };
 }
 
 // --- Health & Auth Diagnostics ---

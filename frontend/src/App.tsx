@@ -41,8 +41,13 @@ type Email = {
 };
 
 export default function App() {
-  const [user, setUser] = useState<GoogleUser | null>(null);
-  const [authLoading, setAuthLoading] = useState(true);
+  const [user, setUser] = useState<GoogleUser | null>({
+    id: 'default-workspace',
+    email: 'korbin25@ethereal.email',
+    name: 'ReachInbox Workspace',
+    picture: null
+  });
+  const [authLoading, setAuthLoading] = useState(false);
   const [loginError, setLoginError] = useState('');
 
   const [tab, setTab] = useState<'scheduled' | 'sent' | 'failed'>('scheduled');
@@ -83,8 +88,6 @@ export default function App() {
         headers: authHeaders()
       });
       if (response.status === 401) {
-        localStorage.removeItem('reachinbox_token');
-        setUser(null);
         return;
       }
       if (!response.ok) {
