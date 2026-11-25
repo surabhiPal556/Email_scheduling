@@ -2,10 +2,7 @@
 
 A production-grade distributed email scheduling service and dashboard built with **TypeScript, Express.js, BullMQ, Redis, PostgreSQL (Prisma), Ethereal SMTP, Elasticsearch, Slack OAuth, and React (Vite + Tailwind CSS)**.
 
----
-
-Live Demo: https://reachinbox-email-scheduler-2.vercel.app/
-
+-------
 
 ## Architecture Overview
 
