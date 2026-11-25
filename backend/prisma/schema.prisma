@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Email {
+  id          String    @id @default(cuid())
+  tenantId    String    @default("demo-tenant")
+  recipient   String
+  senderEmail String
+  subject     String
+  body        String    @db.Text
+  scheduledAt DateTime
+  sentAt      DateTime?
+  status      String    @default("scheduled")
+  previewUrl  String?   @db.Text
+  error       String?   @db.Text
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([tenantId, status, scheduledAt])
+  @@index([recipient])
+}
+
+model SlackIntegration {
+  id          String   @id @default(cuid())
+  tenantId    String   @unique
+  accessToken String?  @db.Text
+  webhookUrl  String?  @db.Text
+  channelName String?
+  teamName    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

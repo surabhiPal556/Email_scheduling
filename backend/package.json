@@ -1,0 +1,45 @@
+{
+  "name": "reachinbox-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "prisma generate",
+    "dev": "tsx watch src/index.ts",
+    "worker": "tsx watch src/worker.ts",
+    "build": "prisma generate && tsc",
+    "start": "npx prisma db push --accept-data-loss && node dist/index.js",
+    "start:worker": "node dist/worker.js",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push"
+  },
+  "dependencies": {
+    "@bull-board/api": "^6.5.4",
+    "@bull-board/express": "^6.5.4",
+    "@prisma/client": "^6.7.0",
+    "bullmq": "^5.52.2",
+    "connect-redis": "^9.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "ioredis": "^5.6.1",
+    "nodemailer": "^6.10.0",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "redis": "^4.7.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/express-session": "^1.18.1",
+    "@types/node": "^22.13.10",
+    "@types/nodemailer": "^6.4.17",
+    "@types/passport": "^1.0.17",
+    "@types/passport-google-oauth20": "^2.0.16",
+    "prisma": "^6.7.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}
